@@ -20,3 +20,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+.header {
+  margin-top: -20px;
+}
+.logo {
+  max-width: 200px; /* Justera efter behov */
+  height: auto; /* Behåller proportionerna */
+  display: inline-block; /* Gör så att den centrerar sig */
+  margin-top: -20px; /* Ger lite utrymme ovanför logotypen */
+  margin-bottom: 10px; /* Ger lite utrymme nedanför logotypen */
+}

@@ -1,0 +1,20 @@
+.footer {
+    margin-bottom: -50px;
+    background-color: #f8f9fa; /* Ljusgrå bakgrund för en ren look */
+    color: #343a40; /* Mörk textfärg för kontrast */
+    padding: 10px 0; /* Utrymme ovan och under texten */
+    text-align: center; /* Centrerar texten */
+    font-family: 'Arial', sans-serif; /* Använd ett enkelt och lättläst typsnitt */
+    border-top: 2px solid #e9ecef; /* Tunn linje ovanför footern */
+}
+
+.footer h4 {
+    margin: 0; /* Tar bort standardmarginaler för h4 */
+    font-size: 1.2rem; /* Större text för bättre läsbarhet */
+}
+
+/* För att lägga till en hover-effekt om du vill */
+.footer h4:hover {
+    color: #007bff; /* Ljusblå färg vid hover */
+    transition: color 0.3s; /* Gör övergången smidig */
+}

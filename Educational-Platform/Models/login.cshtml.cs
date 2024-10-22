@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 public class LoginModel : PageModel
 {
+    private readonly string correctEmail = "user@gmail.com";
+    private readonly string correctPassword = "12345";
+
     [BindProperty]
     public string Email { get; set; }
     
@@ -11,14 +14,13 @@ public class LoginModel : PageModel
 
     public IActionResult OnPost()
     {
-        // Här kan du lägga till logik för autentisering
-        if (Email == "test@example.com" && Password == "password")
+        if (Email == correctEmail && Password == correctPassword)
         {
-            // Exempel på enkel inloggningslogik
-            return RedirectToPage("/Index");
+            // Använd kortare sökväg efter att ha flyttat LoggedIn-sidan
+            return RedirectToPage("/Shared/KalleMadePages/LoggedIn");
         }
 
-        ModelState.AddModelError("", "Invalid login attempt.");
+        ModelState.AddModelError("", "Felaktigt användarnamn eller lösenord.");
         return Page();
     }
 }

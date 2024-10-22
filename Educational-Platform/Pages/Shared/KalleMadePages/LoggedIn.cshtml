@@ -1,0 +1,170 @@
+@page
+@model LoggedInModel
+@{
+    ViewData["Title"] = "IT-Säkerhetsquiz";
+}
+
+<!-- Länk till specifik CSS för den här sidan -->
+<link rel="stylesheet" href="~/css/it-security.css" asp-append-version="true"/>
+
+<div class="quiz-container">
+    <div class="logo-container">
+        <img src="~/css/logotype.png" alt="Logotyp" class="logo" />
+    </div>
+
+    @if (!Model.ShowQuiz && !Model.ShowResults)
+    {
+        <!-- Informationsstycke om IT-säkerhet -->
+        <div class="info-section">
+            <h3>Grundläggande IT-säkerhet</h3>
+            <p>
+                IT-säkerhet handlar om att skydda information och system från olika hot som kan leda till obehörig åtkomst, användning, avslöjande, störning, ändring eller förstöring av data. I den digitala världen är säkerhet avgörande för att skydda både personliga och företagsrelaterade uppgifter. Det finns flera viktiga aspekter av IT-säkerhet som varje användare bör förstå.
+            </p>
+            <p>
+                <strong>Virtuella privata nätverk (VPN):</strong> En VPN är en teknik som skapar en säker och krypterad anslutning över ett mindre säkert nätverk, som till exempel internet. Genom att använda en VPN kan du skydda din integritet online och dölja din IP-adress, vilket gör det svårare för obehöriga att spåra din aktivitet.
+            </p>
+            <p>
+                <strong>Säker lösenordshantering:</strong> Ett av de mest grundläggande men viktiga stegen för att skydda dina onlinekonton är att använda starka, unika lösenord för varje tjänst. Lösenord bör vara långa och innehålla en blandning av bokstäver, siffror och specialtecken. Det är också viktigt att inte dela lösenord med andra, oavsett situationen.
+            </p>
+            <p>
+                <strong>Phishing:</strong> Phishing är en form av cyberbrott där angripare använder bedrägliga meddelanden, ofta via e-post, för att lura användare att lämna ut känslig information som inloggningsuppgifter eller kreditkortsinformation. Att vara medveten om tecknen på phishing, såsom misstänkta länkar eller felstavningar, kan hjälpa dig att undvika att falla för sådana attacker.
+            </p>
+            <p>
+                <strong>Säkerhetskopiering av data:</strong> Regelbunden säkerhetskopiering av dina data är en avgörande del av IT-säkerheten. Detta skyddar dig mot dataförlust som kan orsakas av ransomware-attacker, hårdvarufel eller oavsiktlig radering av filer. Genom att ha en säkerhetskopiering på en annan plats, till exempel i molnet eller på en extern hårddisk, kan du enkelt återställa dina data om det behövs.
+            </p>
+            <p>
+                <strong>Multifaktorautentisering (MFA):</strong> MFA är en säkerhetsprocess som kräver mer än en metod för att verifiera användarens identitet. Utöver ett lösenord kan MFA kräva en kod som skickas till din mobiltelefon eller en biometrisk verifiering som fingeravtryck eller ansiktsigenkänning. Detta ger ett extra lager av säkerhet och gör det svårare för obehöriga att få tillgång till ditt konto.
+            </p>
+            <p>
+                <strong>Brandväggar och antivirusprogram:</strong> Brandväggar fungerar som en barriär mellan ditt interna nätverk och externa hot. De övervakar och kontrollerar den inkommande och utgående trafiken. Antivirusprogram skyddar din dator från skadlig programvara genom att upptäcka och ta bort virus och andra hot. Det är viktigt att hålla dessa program uppdaterade för att skydda dig mot de senaste hoten.
+            </p>
+            <p>
+                <strong>Malware:</strong> Malware, eller skadlig programvara, är ett samlingsnamn för olika typer av skadliga program, inklusive virus, trojaner och spionprogram. Dessa program kan orsaka skada på din dator och stjäla din information. Att vara vaksam och använda antivirusprogram kan hjälpa till att skydda dig mot malware-attacker.
+            </p>
+            <p>
+                <strong>Social Engineering:</strong> Social engineering handlar om att manipulera människor att avslöja konfidentiell information. Genom att utnyttja mänskliga känslor och beteenden kan angripare lura individer att ge upp sina inloggningsuppgifter eller andra känsliga uppgifter. Att utbilda sig själv och andra om hur social engineering fungerar kan minska risken för sådana attacker.
+            </p>
+            <!-- (Resten av informationsstycket...) -->
+            <form method="post" asp-page-handler="StartQuiz">
+                <button type="submit">Starta quiz</button>
+            </form>
+        </div>
+    }
+
+    @if (Model.ShowQuiz)
+    {
+        <!-- Quizsektionen -->
+        <div class="quiz-section">
+            <h3>IT-säkerhetsquiz</h3>
+            <form method="post" asp-page-handler="SubmitQuiz">
+                <ol>
+                    <li>
+                        Vad betyder förkortningen "VPN"?
+                        <br />
+                        <input type="radio" name="answers[0]" value="Virtuell Privat Nätverk" /> Virtuell Privat Nätverk
+                        <br />
+                        <input type="radio" name="answers[0]" value="Värdebaserad Privatisering av Nätverk" /> Värdebaserad Privatisering av Nätverk
+                        <br />
+                        <input type="radio" name="answers[0]" value="Verkligt Privat Nätverk" /> Verkligt Privat Nätverk
+                    </li>
+                    <li>
+                        Vad är det viktigaste sättet att skydda dina lösenord?
+                        <br />
+                        <input type="radio" name="answers[1]" value="Använda långa, komplexa lösenord" /> Använda långa, komplexa lösenord
+                        <br />
+                        <input type="radio" name="answers[1]" value="Dela dem med vänner för säkerhet" /> Dela dem med vänner för säkerhet
+                        <br />
+                        <input type="radio" name="answers[1]" value="Skriva ner dem på papper" /> Skriva ner dem på papper
+                    </li>
+                    <li>
+                        Vad är "phishing"?
+                        <br />
+                        <input type="radio" name="answers[2]" value="En form av dataintrång där angripare använder bedrägliga e-postmeddelanden" /> En form av dataintrång där angripare använder bedrägliga e-postmeddelanden
+                        <br />
+                        <input type="radio" name="answers[2]" value="Ett sätt att säkerhetskopiera din data" /> Ett sätt att säkerhetskopiera din data
+                        <br />
+                        <input type="radio" name="answers[2]" value="En typ av datorvirus" /> En typ av datorvirus
+                    </li>
+                    <li>
+                        Varför är säkerhetskopiering viktigt?
+                        <br />
+                        <input type="radio" name="answers[3]" value="För att kunna återställa data efter ett intrång" /> För att kunna återställa data efter ett intrång
+                        <br />
+                        <input type="radio" name="answers[3]" value="För att förhindra virus" /> För att förhindra virus
+                        <br />
+                        <input type="radio" name="answers[3]" value="För att spara utrymme på datorn" /> För att spara utrymme på datorn
+                    </li>
+                    <li>
+                        Vad innebär multifaktorautentisering (MFA)?
+                        <br />
+                        <input type="radio" name="answers[4]" value="Att använda flera metoder för att verifiera en användares identitet" /> Att använda flera metoder för att verifiera en användares identitet
+                        <br />
+                        <input type="radio" name="answers[4]" value="Att använda endast ett lösenord" /> Att använda endast ett lösenord
+                        <br />
+                        <input type="radio" name="answers[4]" value="Att byta lösenord varje månad" /> Att byta lösenord varje månad
+                    </li>
+                    <li>
+                        Vad är en brandvägg?
+                        <br />
+                        <input type="radio" name="answers[5]" value="En hårdvara eller programvara som övervakar och kontrollerar nätverkstrafik" /> En hårdvara eller programvara som övervakar och kontrollerar nätverkstrafik
+                        <br />
+                        <input type="radio" name="answers[5]" value="En typ av virusprogram" /> En typ av virusprogram
+                        <br />
+                        <input type="radio" name="answers[5]" value="Ett verktyg för att säkerhetskopiera data" /> Ett verktyg för att säkerhetskopiera data
+                    </li>
+                    <li>
+                        Vad står förkortningen "Malware" för?
+                        <br />
+                        <input type="radio" name="answers[6]" value="Skadlig programvara som kan skada datorer eller nätverk" /> Skadlig programvara som kan skada datorer eller nätverk
+                        <br />
+                        <input type="radio" name="answers[6]" value="En form av säkerhetskopiering" /> En form av säkerhetskopiering
+                        <br />
+                        <input type="radio" name="answers[6]" value="Ett sätt att skydda ditt lösenord" /> Ett sätt att skydda ditt lösenord
+                    </li>
+                    <li>
+                        Vad är ett "phishing"-meddelande?
+                        <br />
+                        <input type="radio" name="answers[7]" value="Ett e-postmeddelande som ber dig att bekräfta din kontoinformation" /> Ett e-postmeddelande som ber dig att bekräfta din kontoinformation
+                        <br />
+                        <input type="radio" name="answers[7]" value="En typ av virus" /> En typ av virus
+                        <br />
+                        <input type="radio" name="answers[7]" value="En säkerhetsåtgärd" /> En säkerhetsåtgärd
+                    </li>
+                    <li>
+                        Vilket av följande är ett exempel på ett säkert lösenord?
+                        <br />
+                        <input type="radio" name="answers[8]" value="X$4Gf@7hP!2a" /> X$4Gf@7hP!2a
+                        <br />
+                        <input type="radio" name="answers[8]" value="123456" /> 123456
+                        <br />
+                        <input type="radio" name="answers[8]" value="password" /> password
+                    </li>
+                    <li>
+                        Vad innebär social ingenjörskonst?
+                        <br />
+                        <input type="radio" name="answers[9]" value="Att manipulera människor att avslöja konfidentiell information" /> Att manipulera människor att avslöja konfidentiell information
+                        <br />
+                        <input type="radio" name="answers[9]" value="Att hacka datorer" /> Att hacka datorer
+                        <br />
+                        <input type="radio" name="answers[9]" value="Att installera programvara" /> Att installera programvara
+                    </li>
+                </ol>
+                <button type="submit">Skicka in quiz</button>
+            </form>
+        </div>
+    }
+
+@if (Model.ShowResults)
+    {
+        <!-- Resultatssektionen -->
+        <div class="result-section">
+            <h3>Dina resultat</h3>
+            <p>Du svarade på @Model.CorrectAnswers av @Model.TotalQuestions frågor korrekt.</p>
+            <p>@Model.Feedback</p>
+            <form method="post" asp-page-handler="RestartQuiz">
+                <button type="submit">Starta om quizet</button>
+            </form>
+        </div>
+    }
+</div>
+    
